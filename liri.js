@@ -1,10 +1,13 @@
 require("dotenv").config();
 
 
- var keys = require("./keys.js");
+ var keys = require("./keys");
 
-//  var spotify = new Spotify(keys.spotify);
+ var spotifyid = keys.spotify.id;
+ var spotifysecret = keys.spotify.secret;
+console.log(spotifysecret);
 //  var client = new Twitter(keys.twitter);
+
 var command = process.argv[2];
 
 var args = process.argv;
@@ -14,13 +17,14 @@ var args = process.argv;
  for (var i = 3; i < args.length; i++) {
 
   // Build a string with the address.
-  userInput = userInput + " " + args[i];
+  userInput = userInput + " " + args[i];  
 }
-//  switch (command) {
-//   case "my-tweets":
-//   tweets();
-//     break;
-  
+
+ switch (command) {
+  case "my-tweets":
+  tweets();
+    break;
+ }
 //   case "spotify-this-song":
 //     spotify();
 //     break;
@@ -34,5 +38,8 @@ var args = process.argv;
 //     break;
 //   }
 
+  // function tweets() {
+    
+  // } 
 
 
