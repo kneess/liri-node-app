@@ -67,6 +67,9 @@ function spotify() {
   var Spotify = require('node-spotify-api');
 
   var spotify = new Spotify(keys.spotify);
+  if(userInput === '') {
+    userInput = "The Sign Ace"
+  }
 
   spotify.search({ type: 'track', query: userInput, limit: 1 }, function (err, data) {
     if (err) {
@@ -80,6 +83,10 @@ function spotify() {
 
 function movie() {
   var request = require("request");
+
+  if(userInput === '') {
+    userInput = "remember the titans"
+  }
 
   request("http://www.omdbapi.com/?t="+ userInput  +"&plot=short&apikey=trilogy", function(error, response, body) {
 
