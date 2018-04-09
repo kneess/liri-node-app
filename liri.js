@@ -38,11 +38,11 @@ switch (command) {
     movie();
     break;
     
+  
+  case "do-what-it-says":
+    dowhat();
+    break;
   }
-//   case "do-what-it-says":
-//     dowhat();
-//     break;
-//   }
 
 function tweets() {
 
@@ -92,6 +92,7 @@ function movie() {
   request("http://www.omdbapi.com/?t="+ userInput  +"&plot=short&apikey=trilogy", function(error, response, body) {
 
     if (!error && response.statusCode === 200) {
+      //convenience variable
       var json = JSON.parse(body)
       // console.log(json.Ratings[1].Value)
       console.log('Title: ' +json.Title + '\nYear: ' + json.Year + '\nimdbRating: ' + json.imdbRating + '\nRotten Tomamtoes Rating: ' + json.Ratings[1].Value +
@@ -99,4 +100,16 @@ function movie() {
 
     }
 })
+}
+
+function dowhat() {
+  var fs = require("fs");
+
+  fs.readFile("random.txt","utf8", function(error,data) {
+    if(error) {
+      return console.log(error);
+    }
+    userInput = ;
+    spotify()
+  } )
 }
