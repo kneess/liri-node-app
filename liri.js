@@ -67,6 +67,7 @@ function spotify() {
   var Spotify = require('node-spotify-api');
 
   var spotify = new Spotify(keys.spotify);
+  //if user doesnt search anything then it searches this song
   if(userInput === '') {
     userInput = "The Sign Ace"
   }
@@ -85,7 +86,7 @@ function movie() {
   var request = require("request");
 
   if(userInput === '') {
-    userInput = "remember the titans"
+    userInput = "Mr. Nobody"
   }
 
   request("http://www.omdbapi.com/?t="+ userInput  +"&plot=short&apikey=trilogy", function(error, response, body) {
