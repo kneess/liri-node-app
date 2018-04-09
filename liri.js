@@ -22,7 +22,7 @@ var userInput = '';
 for (var i = 3; i < args.length; i++) {
 
   // Build a string with the user input
-  userInput = userInput + " " + args[i];
+  userInput = "'<" + userInput+ " " + args[i] + ">'";
 }
 
 switch (command) {
@@ -33,11 +33,12 @@ switch (command) {
   case "spotify-this-song":
     spotify();
     break;
-}
-//   case "movie-this":
-//     movie();
-//     break;
 
+    case "movie-this":
+    movie();
+    break;
+    
+  }
 //   case "do-what-it-says":
 //     dowhat();
 //     break;
@@ -67,7 +68,7 @@ function spotify() {
 
   var spotify = new Spotify(keys.spotify);
 
-  spotify.search({ type: 'track', query: 'milkshake', limit: 1 }, function (err, data) {
+  spotify.search({ type: 'track', query: userInput, limit: 1 }, function (err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -77,4 +78,17 @@ function spotify() {
   });
 }
 
+function movie() {
+  var request = require("request");
 
+  request("http://www.omdbapi.com/?t="+ userInput  +"&plot=short&apikey=trilogy", function(error, response, body) {
+
+    if (!error && response.statusCode === 200) {
+      var json = JSON.parse(body)
+      // console.log(json.Ratings[1].Value)
+      console.log('Title: ' +json.Title + '\nYear: ' + json.Year + '\nimdbRating: ' + json.imdbRating + '\nRotten Tomamtoes Rating: ' + json.Ratings[1].Value +
+    '\nCountry: ' + json.Country + '\nLanguage: ' + json.Language + '\nPlot: ' + json.Plot + '\nActors: ' + json.Actors);
+
+    }
+})
+}
