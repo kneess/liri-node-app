@@ -31,7 +31,7 @@ switch (command) {
     break;
 
   case "spotify-this-song":
-    spotify();
+    spotify(command,userInput);
     break;
 
     case "movie-this":
@@ -109,7 +109,9 @@ function dowhat() {
     if(error) {
       return console.log(error);
     }
-    userInput = ;
-    spotify()
+    var spotifySong = data.split(",");
+    var command = spotifySong[0];
+    var userInput = spotifySong[1];
+    spotify(command,userInput);
   } )
 }
