@@ -31,7 +31,7 @@ switch (command) {
     break;
 
   case "spotify-this-song":
-    spotify(command,userInput);
+    spotify(userInput);
     break;
 
     case "movie-this":
@@ -109,9 +109,15 @@ function dowhat() {
     if(error) {
       return console.log(error);
     }
-    var spotifySong = data.split(",");
-    var command = spotifySong[0];
-    var userInput = spotifySong[1];
-    spotify(command,userInput);
+    var textFile = data.split(",");
+    var command = textFile[0];
+    var userInput = textFile[1];
+    if(command === "spotify-this-song") {
+      spotify(userInput);
+    } else if(command === "my-tweets") {
+      tweets()
+    } else if (command === "movie-this") {
+      movie()
+    }
   } )
 }
